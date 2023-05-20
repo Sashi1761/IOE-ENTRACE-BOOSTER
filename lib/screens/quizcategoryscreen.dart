@@ -15,31 +15,35 @@ class QuizCategoryScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 60, 6, 2),
       ),
-      body: Column(children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 16,
-              ),
-              Center(
-                child: Text(
-                  'What do you Want to learn Today!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(35),
+              color: const Color.fromARGB(255, 103, 10, 3)
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 16,
                 ),
-              ),
-              Image.network(
-                'https://img.freepik.com/premium-vector/engineer-profession-mascot-logo-vector-cartoon-style_180868-1122.jpg?w=2000',
-                height: 200,
-              )
-            ],
-          ),
-        )
-      ]),
+                Center(
+                  child: Text(
+                    'What do you Want to learn Today!',
+                    style: TextStyle(fontSize: 16,color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+               Image.asset('assets/category.jpg', height: 140,width:140)
+                ],
+            ),
+          )
+        ]),
+      ),
     );
+     
   }
 }
+
+
+
