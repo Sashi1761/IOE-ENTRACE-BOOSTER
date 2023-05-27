@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:projectapp/models/questions.dart';
+import 'package:projectapp/screens/physics_screen.dart';
 import 'package:projectapp/screens/quizcategoryscreen.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,23 +13,10 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    bottomNavigationBar: CurvedNavigationBar(
-    backgroundColor: const Color.fromARGB(255, 74, 16, 11),
-     animationDuration: Duration(milliseconds: 500),
-    items: <Widget>[
-      Icon(Icons.home, size: 30),
-      Icon(Icons.list, size: 30),
-      Icon(Icons.man, size: 30),
-    ],
-    onTap: (index) {
-      //Handle button tap
-    },
-  ),
-      body:SizedBox.expand(
+      body: SizedBox.expand(
         child: Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -54,20 +44,36 @@ class HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 30,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => QuizCategoryScreen(),
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('pquestions')
+                    .snapshots(),
+                builder: ((context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  final questionDocs = snapshot.data?.docs;
+                  final questions = questionDocs!
+                      .map((e) => Question.fromQueryDocumentSnapshot(e))
+                      .toList();
+                  return ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => QuizCategoryScreen()
+                        ),
+                      );
+                    },
+                    child: Text('Begin Your Journey'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal,
+                      onPrimary: Colors.black,
                     ),
                   );
-                },
-                child: Text('Begin Your Journey'),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.teal,
-                  onPrimary: Colors.black,
-                ),
-              )
+                }),
+              ),
             ],
           ),
         ),
