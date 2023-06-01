@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:projectapp/components/action_button.dart';
+import 'package:projectapp/components/rank_auth_button.dart';
 import 'package:projectapp/models/questions.dart';
-import 'package:projectapp/screens/physics_screen.dart';
 import 'package:projectapp/screens/quizcategoryscreen.dart';
 
 
@@ -46,11 +46,11 @@ class HomePageState extends State<HomePage> {
               ),
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
-                    .collection('pquestions')
+                    .collection('testquestion')
                     .snapshots(),
                 builder: ((context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -58,22 +58,19 @@ class HomePageState extends State<HomePage> {
                   final questions = questionDocs!
                       .map((e) => Question.fromQueryDocumentSnapshot(e))
                       .toList();
-                  return ElevatedButton(
-                    onPressed: () {
+                  return ActionButton(title:'Begin Your Journey' , onTap:
+                   () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => QuizCategoryScreen()
+                          builder: (context) => const QuizCategoryScreen(),
                         ),
                       );
-                    },
-                    child: Text('Begin Your Journey'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
-                      onPrimary: Colors.black,
-                    ),
+                    }
                   );
                 }),
               ),
+             const  SizedBox(height: 40,),
+             const  RankAuthButton(),
             ],
           ),
         ),

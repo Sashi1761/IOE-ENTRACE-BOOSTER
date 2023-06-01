@@ -19,14 +19,14 @@ class _PhysicsScreenState extends State<PhysicsScreen> {
   late Timer _timer;
   int _currentIndex = 0;
   String _selectedAnswer = '';
-  int _score = 0;
+  double _score = 0;
 
   @override
   void initState() {
     super.initState();
     _currentTime = widget.totalTime;
 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic( const Duration(seconds: 1), (timer) {
       print(_currentTime);
       setState(() {
         _currentTime = _currentTime - 1;
@@ -65,6 +65,7 @@ class _PhysicsScreenState extends State<PhysicsScreen> {
                   fit: StackFit.expand,
                   children: [
                     LinearProgressIndicator(
+                      
                       backgroundColor: Colors.teal,
                       value: _currentTime / widget.totalTime,
                     ),
@@ -94,7 +95,7 @@ class _PhysicsScreenState extends State<PhysicsScreen> {
             ),
             Text(
               currentquestion.question,
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: const TextStyle(color: Colors.white, fontSize: 25),
             ),
             Expanded(
               child: ListView.builder(
@@ -112,8 +113,10 @@ class _PhysicsScreenState extends State<PhysicsScreen> {
                         if (answer == currentquestion.correctAnswer) {
                           _score++;
                         }
+                        
+                      
                         Future.delayed(
-                          Duration(milliseconds: 500),
+                         const  Duration(milliseconds: 500),
                           () {
                             if (_currentIndex == widget.question.length - 1) {
                               pushResultScreen(context);
@@ -138,7 +141,7 @@ class _PhysicsScreenState extends State<PhysicsScreen> {
   void pushResultScreen(BuildContext context) {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => ResultScreen(totalQuestions: widget.question.length,score:_score ,),
+        builder: (context) => ResultScreen(totalQuestions: widget.question.length,score:_score),
       ),
     );
   }
@@ -177,13 +180,14 @@ class AnswerTile extends StatelessWidget {
     );
   }
 
-  Color get cardColor {
+   Color get cardColor {
     if (!isSelected) return Colors.white;
 
-    if (isSelected) {
-      return Colors.green;
+    if (answer == correctAnswer) {
+      return Colors.teal;
     }
 
-    return Colors.white;
+    return Colors.redAccent;
   }
 }
+

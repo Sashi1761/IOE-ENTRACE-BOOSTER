@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projectapp/firebase_options.dart';
-import 'package:projectapp/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projectapp/splash/SplaceScreen.dart';
 
@@ -24,10 +23,10 @@ class MyApp extends StatelessWidget {
       title: 'IOE ENTRANCE BOOSTER',
       theme: ThemeData.light(useMaterial3: true).copyWith(
           scaffoldBackgroundColor: Colors.white,
-          appBarTheme: AppBarTheme(
+          appBarTheme:const AppBarTheme(
             backgroundColor: Colors.white,
           )),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
