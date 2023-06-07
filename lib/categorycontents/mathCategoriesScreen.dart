@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:projectapp/mathcategores/Algebra.dart';
+import 'package:projectapp/mathcategores/Calculus.dart';
+import 'package:projectapp/mathcategores/CoordinateGeometry.dart';
+import 'package:projectapp/mathcategores/Trigonomert.dart';
+import 'package:projectapp/mathcategores/vectors.dart';
 
 class MathCategoryScreen extends StatelessWidget {
   final List<String> categories = [
-    'Atomic Structure',
-    'Chemical Bonding',
-    'States of Matter',
-    'Chemical Reactions',
-    'Acids and Bases',
-    'Organic Chemistry',
+    'Algebra',
+    'Trigonometry',
+    'Coordinate Geometry',
+    'Calculus',
+    'Vectors'
   ];
 
   final List<IconData> icons = [
-    Icons.scatter_plot,
-    Icons.link,
+    Icons.add,
+    Icons.functions,
     Icons.cloud,
-    Icons.receipt,
-    Icons.format_paint,
-    Icons.flare,
+    Icons.grid_3x3,
+    Icons.arrow_right_alt,
+    
   ];
 
 
@@ -29,29 +33,42 @@ class MathCategoryScreen extends StatelessWidget {
     Colors.teal,
   ];
 
-  void navigateToCategoryPage(BuildContext context, String category) {
-    // You can define your own routes and navigate to the respective page
-    // based on the selected category
-    if (category == 'Atomic Structure') {
-      Navigator.pushNamed(context, '/atomic_structure');
-    } else if (category == 'Chemical Bonding') {
-      Navigator.pushNamed(context, '/chemical_bonding');
-    } else if (category == 'States of Matter') {
-      Navigator.pushNamed(context, '/states_of_matter');
-    } else if (category == 'Chemical Reactions') {
-      Navigator.pushNamed(context, '/chemical_reactions');
-    } else if (category == 'Acids and Bases') {
-      Navigator.pushNamed(context, '/acids_and_bases');
-    } else if (category == 'Organic Chemistry') {
-      Navigator.pushNamed(context, '/organic_chemistry');
-    }
+   void navigateToCategoryPage(BuildContext context, String category) {
+  // You can define your own routes and navigate to the respective page
+  // based on the selected category
+  if (category == 'Algebra') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Algebra()),
+    );
+  } else if (category == 'Trigonometry') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Trigonometry()),
+    );
+  } else if (category == 'Coordinate Geometry') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CoordinateGeometry()),
+    );
+  } else if (category == 'Calculus') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Calculus()),
+    );
+  }else if (category == 'Vectors') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => vectors()),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chemistry Categories', style: TextStyle(color: Colors.black),),
+        title: const Text('Math Categories', style: TextStyle(color: Colors.black),),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),

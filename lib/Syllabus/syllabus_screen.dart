@@ -4,6 +4,7 @@ import 'package:projectapp/screens/home_screen.dart';
 import 'Screens/chemistry_syllabus_screen.dart';
 import 'Screens/english_syllabus_screen.dart';
 import 'Screens/math_syllabus_screen.dart';
+import 'marksdistribution.dart';
 
 class SyllabusPage extends StatelessWidget {
   const SyllabusPage({Key? key}) : super(key: key);
@@ -126,7 +127,7 @@ class SyllabusPage extends StatelessWidget {
                     EdgeInsets.only(top:10, bottom:10,),
                 child: ListTile(
                   iconColor:Colors.teal ,
-            leading:Icon(Icons.book, size: 70,),
+            leading:Icon(Icons.book, size: 60,),
             title:const Text('English',style:  TextStyle(color: Colors.black,fontSize: 20),),
             onTap: () {  Navigator.of(context).push(
                         MaterialPageRoute(
@@ -139,9 +140,41 @@ class SyllabusPage extends StatelessWidget {
               ),
               ),
             ),
+             Divider(
+              thickness: 0.8,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>MarksDistributionTable(),
+                    ));
+              },
+              child: Container(
+                
+                child: Container(
+                padding:
+                    EdgeInsets.only(top:10, bottom:10,),
+                child: ListTile(
+                  iconColor:Colors.purple,
+            leading:Icon(Icons.info,size: 60,),
+            title:const Text('Marks Distribution Table',style:  TextStyle(color: Colors.black,fontSize: 20),),
+            onTap: () {  Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>MarksDistributionTable(),
+                        ),
+                      );
+              
+            },
+          ),
+              ),
+              ),
+            ),
             Divider(
               thickness: 0.8,
             ),
+            
           ],
         ),
       ),

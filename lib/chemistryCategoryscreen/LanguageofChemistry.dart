@@ -4,25 +4,25 @@ import 'package:flutter/material.dart';
 import '../models/questions.dart';
 import '../screens/physics_screen.dart';
 
-class EnglishQuizCategoryScreen extends StatelessWidget {
+class LanguageofChemistry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'English Categories',
+          'Language of Chemistry and Physical Chemistry',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
       body: GridView.count(
-        crossAxisCount: 3, // Number of containers per row
+        crossAxisCount: 4, // Number of containers per row
         childAspectRatio: 1.0, // Width to height ratio of each container
         children: [
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('englishset1')
+                .collection('chemistryset1')
                 .snapshots(),
             builder: ((context, snapshot) {
               if (!snapshot.hasData) {
@@ -41,7 +41,7 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (context) => PhysicsScreen(
-                                totalTime: 10,
+                                totalTime: 30,
                                 question: questions,
                               )),
                     );
@@ -67,7 +67,7 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('englishset3')
+                .collection('chemistryset1')
                 .snapshots(),
             builder: ((context, snapshot) {
               if (!snapshot.hasData) {
@@ -113,7 +113,7 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('englishset1')
+                .collection('chemistryset1')
                 .snapshots(),
             builder: ((context, snapshot) {
               if (!snapshot.hasData) {
@@ -132,7 +132,7 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (context) => PhysicsScreen(
-                                totalTime: 10,
+                                totalTime: 30,
                                 question: questions,
                               )),
                     );
@@ -159,7 +159,7 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('englishset3')
+                .collection('chemistryset2')
                 .snapshots(),
             builder: ((context, snapshot) {
               if (!snapshot.hasData) {
@@ -178,20 +178,19 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (context) => PhysicsScreen(
-                                totalTime: 10,
+                                totalTime: 30,
                                 question: questions,
                               )),
                     );
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                    color: Colors.teal,
+                    color: Colors.red,
                     ),
                     child: const Center(
-                      
                       child: Text(
-                        'Set 4 ',
+                        'Set 4',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -204,6 +203,7 @@ class EnglishQuizCategoryScreen extends StatelessWidget {
               );
             }),
           ),
+         
         ],
       ),
     );

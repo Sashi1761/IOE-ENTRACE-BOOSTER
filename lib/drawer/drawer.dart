@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:projectapp/components/groupdisscussion.dart';
 import 'package:projectapp/screens/calenderScreen.dart';
 import 'package:projectapp/screens/home_screen.dart';
 import 'package:projectapp/screens/quizcategoryscreen.dart';
@@ -97,6 +98,17 @@ class _MyDrawerState extends State<MyDrawer> {
                 Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) =>const QuizCategoryScreen(),
+                        ),
+                      );
+            },
+          ),
+           ListTile(
+            leading:const Icon(Icons.chat, color: Colors.black,),
+            title:const Text('C H A T',style: TextStyle(color: Colors.black),),
+            onTap: () {
+                Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>const GroupDiscussion(),
                         ),
                       );
             },

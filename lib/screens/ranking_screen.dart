@@ -22,7 +22,7 @@ class RankingScreen extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('users')
-                .orderBy('score')
+                .orderBy('score', descending: true)
                 .snapshots(),
             builder: ((context, snapshot) {
               if (!snapshot.hasData)

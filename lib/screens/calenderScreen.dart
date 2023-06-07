@@ -177,7 +177,9 @@ class _EventCalendarScreenState extends State<EventCalendarScreen> {
                     onChanged: (_) => _toggleEventCompletion(index),
                   ),
                   title: Text(event.eventName),
-                  subtitle: Text(event.eventDate.toString()),
+                  subtitle: Text(
+          '${event.eventDate.day}/${event.eventDate.month}/${event.eventDate.year}',
+        ),
                   trailing: IconButton(
                     icon:const Icon(Icons.delete),
                     onPressed: () => _deleteEvent(index),

@@ -11,7 +11,7 @@ class PhysicsSyllabus extends StatelessWidget {
       appBar: AppBar(
          centerTitle: true,
         backgroundColor:Colors.white,
-        title: Text('Syllabus(Physics)'),
+        title: Text('Syllabus(Physics-45 Marks)'),
       ),
       body: Container(
         padding: EdgeInsets.only(left: 12, bottom: 20, right: 5),

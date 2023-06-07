@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projectapp/components/action_button.dart';
+import 'package:projectapp/components/groupdisscussion.dart';
 import 'package:projectapp/components/rank_auth_button.dart';
 import 'package:projectapp/models/questions.dart';
 import 'package:projectapp/screens/quizcategoryscreen.dart';
+import '../chatapp/chatscreen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -70,7 +72,8 @@ class HomePageState extends State<HomePage> {
                 }),
               ),
              const  SizedBox(height: 40,),
-             const  RankAuthButton(),
+            RankAuthButton(),
+           
             ],
           ),
         ),

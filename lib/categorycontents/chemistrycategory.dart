@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../chemistryCategoryscreen/LanguageofChemistry.dart';
+import '../chemistryCategoryscreen/Metals.dart';
+import '../chemistryCategoryscreen/NonMetals.dart';
+import '../chemistryCategoryscreen/organicChemistry.dart';
+
 class ChemistryCategoryScreen extends StatelessWidget {
   final List<String> categories = [
-    'Atomic Structure',
-    'Chemical Bonding',
-    'States of Matter',
-    'Chemical Reactions',
-    'Acids and Bases',
+    'Language of Chemistry and Physical chemistry',
+    'Non metals',
+    'Metals',
     'Organic Chemistry',
   ];
 
@@ -28,29 +31,40 @@ class ChemistryCategoryScreen extends StatelessWidget {
     Colors.teal,
   ];
 
-  void navigateToCategoryPage(BuildContext context, String category) {
-    // You can define your own routes and navigate to the respective page
-    // based on the selected category
-    if (category == 'Atomic Structure') {
-      Navigator.pushNamed(context, '/atomic_structure');
-    } else if (category == 'Chemical Bonding') {
-      Navigator.pushNamed(context, '/chemical_bonding');
-    } else if (category == 'States of Matter') {
-      Navigator.pushNamed(context, '/states_of_matter');
-    } else if (category == 'Chemical Reactions') {
-      Navigator.pushNamed(context, '/chemical_reactions');
-    } else if (category == 'Acids and Bases') {
-      Navigator.pushNamed(context, '/acids_and_bases');
-    } else if (category == 'Organic Chemistry') {
-      Navigator.pushNamed(context, '/organic_chemistry');
-    }
+ void navigateToCategoryPage(BuildContext context, String category) {
+  // You can define your own routes and navigate to the respective page
+  // based on the selected category
+  if (category == 'Language of Chemistry and Physical chemistry') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LanguageofChemistry()),
+    );
+  } else if (category == 'Non metals') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => NonMetals()),
+    );
+  } else if (category == 'Metals') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Metals()),
+    );
+  } else if (category == 'Organic Chemistry') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => OrganicChemistry()),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chemistry Categories', style: TextStyle(color: Colors.black),),
+        title: const Text(
+          'Chemistry Categories',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),

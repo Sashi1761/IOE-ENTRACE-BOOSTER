@@ -1,135 +1,102 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projectapp/models/questions.dart';
-import 'package:projectapp/screens/physics_screen.dart';
 
-import 'package:projectapp/screens/quizcategoryscreen.dart';
+import '../physicscategory/AtomicPhysicsandElectronics.dart';
+import '../physicscategory/Electricity.dart';
+import '../physicscategory/Heat.dart';
+import '../physicscategory/Optics.dart';
+import '../physicscategory/Sound.dart';
+import '../physicscategory/mechanics.dart';
 
 class PhysicsCategoryScreen extends StatelessWidget {
-  const PhysicsCategoryScreen ({super.key});
+  final List<String> categories = [
+    'Mechanics',
+    'Heat',
+    'optics',
+    'Sound',
+    'Electricity',
+    'Atomic Physics and Electronics'
+  ];
+
+  final List<IconData> icons = [
+    Icons.vibration,
+    Icons.sunny,
+     Icons.flash_on,
+    Icons.volume_up,
+   
+    Icons.memory,
+    Icons.language,
+   
+  ];
+  final List<Color> colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.orange,
+    Colors.green,
+    Colors.purple,
+    Colors.teal,
+  ];
+
+ void navigateToCategoryPage(BuildContext context, String category) {
+  // You can define your own routes and navigate to the respective page
+  // based on the selected category
+  if (category == 'Mechanics') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Mechanics()),
+    );
+  } else if (category == 'Heat') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Heat()),
+    );
+  } else if (category == 'Optics') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Optics()),
+    );
+  } else if (category == 'Sound') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Sound()),
+    );
+  }else if (category == 'Electricity') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Electricity()),
+    );
+  }else if (category == 'Atomic Physics and Electronics') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AtomicPhysicsandElectronics()),
+    );
+  }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Physics Categories'),
-        centerTitle: true,
-        leading: InkWell(
-          child: Icon(Icons.arrow_back),
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => QuizCategoryScreen()));
-          },
+        title: const Text(
+          'Physics Categories',
+          style: TextStyle(color: Colors.black),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
       ),
-      body:Column(
-        children: [
-          Container(
-                  height: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.teal.shade300,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child:  Column(
-                    children: [
-                      Center(
-                        child: 
-                          StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance
-                            .collection('testquestion')
-                            .snapshots(),
-                        builder: ((context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                          final questionDocs = snapshot.data?.docs;
-                          final questions = questionDocs!
-                              .map((e) => Question.fromQueryDocumentSnapshot(e))
-                              .toList();
-                          return
-                        InkWell(
-                          onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PhysicsScreen(totalTime: 10, question: questions,)
-                                ),
-                              );
-                            }, 
-                          child: const ListTile(
-                          title: Text('Mechanics', style: TextStyle(color: Colors.black, fontSize:20 ),),
-                          leading: Icon(Icons.book),
-                          selectedTileColor: Colors.red,
-                          ),
-                        );
-                         }),
-                      ),
-                         
-
-                ),
-                    ]
-                  ),
-          ),
-         const SizedBox( height: 40,),
-         Text('arko ayo aba hai'),
- Container(
-                  height: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.teal.shade300,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child:  Column(
-                    children: [
-                      Center(
-                        child: 
-                          StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance
-                            .collection('testquestion')
-                            .snapshots(),
-                        builder: ((context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                          final questionDocs = snapshot.data?.docs;
-                          final questions = questionDocs!
-                              .map((e) => Question.fromQueryDocumentSnapshot(e))
-                              .toList();
-                          return
-                        InkWell(
-                          onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PhysicsScreen(totalTime: 10, question: questions,)
-                                ),
-                              );
-                            }, 
-                          child: const ListTile(
-                          title: Text('Mechanics', style: TextStyle(color: Colors.black, fontSize:20 ),),
-                          leading: Icon(Icons.book),
-                          selectedTileColor: Colors.red,
-                          ),
-                        );
-                         }),
-                      ),
-                      
-
-                ),
-                    ]
-                  ),
-                  
-
-                   
-          ),
-        ],
-        
-      ),
-              
+      body: ListView.builder(
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              onTap: () {
+                navigateToCategoryPage(context, categories[index]);
+              },
+              leading: Icon(icons[index], color: colors[index]),
+              title: Text(categories[index]),
+            ),
           );
-        
-      
-    
+        },
+      ),
+    );
   }
 }
