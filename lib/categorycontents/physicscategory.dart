@@ -11,8 +11,7 @@ class PhysicsCategoryScreen extends StatelessWidget {
   final List<String> categories = [
     'Mechanics',
     'Heat',
-    'optics',
-    'Sound',
+     'Sound',
     'Electricity',
     'Atomic Physics and Electronics'
   ];
@@ -20,7 +19,6 @@ class PhysicsCategoryScreen extends StatelessWidget {
   final List<IconData> icons = [
     Icons.vibration,
     Icons.sunny,
-     Icons.flash_on,
     Icons.volume_up,
    
     Icons.memory,
@@ -37,8 +35,7 @@ class PhysicsCategoryScreen extends StatelessWidget {
   ];
 
  void navigateToCategoryPage(BuildContext context, String category) {
-  // You can define your own routes and navigate to the respective page
-  // based on the selected category
+
   if (category == 'Mechanics') {
     Navigator.push(
       context,

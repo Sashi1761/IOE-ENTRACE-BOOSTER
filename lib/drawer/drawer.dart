@@ -5,6 +5,8 @@ import 'package:projectapp/screens/calenderScreen.dart';
 import 'package:projectapp/screens/home_screen.dart';
 import 'package:projectapp/screens/quizcategoryscreen.dart';
 
+import '../chatapp/chatscreen.dart';
+
 class MyDrawer extends StatefulWidget {
   @override
   _MyDrawerState createState() => _MyDrawerState();
@@ -108,7 +110,7 @@ class _MyDrawerState extends State<MyDrawer> {
             onTap: () {
                 Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>const GroupDiscussion(),
+                          builder: (context) => ChatScreen(),
                         ),
                       );
             },

@@ -131,7 +131,7 @@ class SyllabusPage extends StatelessWidget {
             title:const Text('English',style:  TextStyle(color: Colors.black,fontSize: 20),),
             onTap: () {  Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>PhysicsSyllabus(),
+                          builder: (context) =>const EnglishSyllabus(),
                         ),
                       );
               
